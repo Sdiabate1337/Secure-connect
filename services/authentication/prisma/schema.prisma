@@ -1,0 +1,15 @@
+// Prisma Schema
+datasource db {
+  provider = "mongodb" // Pour MongoDB
+  url      = env("DATABASE_URL") // L'URL de ta base de données MongoDB
+}
+
+// Modèle de données pour l'utilisateur
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  role      String   @default("USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
